@@ -12,49 +12,14 @@ long long result = 1;
 
 HANDLE Event_1 = CreateEvent(NULL, FALSE, FALSE, NULL);
 HANDLE Event_2 = CreateEvent(NULL, FALSE, FALSE, NULL);
-HANDLE Event_3 = CreateEvent(NULL, FALSE, FALSE, NULL);
 
 DWORD WINAPI Thread2Function(LPVOID lpParam) {
 	vector<double>& a = *static_cast<vector<double>*>(lpParam);
-
-	//WaitForSingleObject(Event_3, INFINITE);
 
 	cout << " interval : ";
 	cin >> i_;
 
 	cout << endl;
-
-	//WaitForSingleObject(Event_1, INFINITE);
-
-	/*for (size_t i = 0; i < a.size(); ++i) {
-		if (a[i] < A) {
-			std::swap(a[i], a[k]);
-			++k;
-		}
-	}*/
-
-	/*vector<double> c;
-
-	int count = 0;
-
-	for (int i = 0; i < a.size(); i++) {
-		if (a[i] < A) {
-			c[count] = a[i];
-			count++;
-		}
-	}
-	for (int i = 0; i < a.size(); i++) {
-		if (a[i] >= A) {
-			c[count] = a[i];
-			count++;
-		}
-	}
-
-	for (int i = 0; i < c.size(); i++) {
-		a[i] = c[i];
-	}*/
-
-
 
 	vector<double> smaller;
 	vector<double> greater;
@@ -141,12 +106,9 @@ int main() {
 	cin >> k;
 	cout << endl;
 
-
-	//SetEvent(Event_3);
-
 	ResumeThread(hThread2);
 
-	HANDLE hThread3 = CreateThread(NULL, 0, Thread3Function, &a,0 /*CREATE_SUSPENDED*/, NULL);
+	HANDLE hThread3 = CreateThread(NULL, 0, Thread3Function, &a,0 , NULL);
 
 
 	WaitForSingleObject(Event_1, INFINITE);
@@ -157,8 +119,6 @@ int main() {
 	}
 
 	cout << endl;
-
-	//ResumeThread(hThread3);
 
 	SetEvent(Event_2);
 
