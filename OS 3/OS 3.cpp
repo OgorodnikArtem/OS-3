@@ -12,9 +12,12 @@ long long result = 1;
 
 HANDLE Event_1 = CreateEvent(NULL, FALSE, FALSE, NULL);
 HANDLE Event_2 = CreateEvent(NULL, FALSE, FALSE, NULL);
+HANDLE Event_3 = CreateEvent(NULL, FALSE, FALSE, NULL);
 
 DWORD WINAPI Thread2Function(LPVOID lpParam) {
 	vector<double>& a = *static_cast<vector<double>*>(lpParam);
+
+	//WaitForSingleObject(Event_3, INFINITE);
 
 	cout << " interval : ";
 	cin >> i_;
@@ -137,6 +140,9 @@ int main() {
 	cout << " Введите значение k : ";
 	cin >> k;
 	cout << endl;
+
+
+	//SetEvent(Event_3);
 
 	ResumeThread(hThread2);
 
